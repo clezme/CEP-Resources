@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Proxy → Full</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <header class="pf-header">
+      <h1>Proxy → Full</h1>
+      <p class="pf-subhead">Relink proxy assets to full-resolution sources without blocking Illustrator.</p>
+    </header>
+
+    <main class="pf-main" aria-live="polite">
+      <section class="pf-status" aria-live="polite" aria-atomic="true">
+        <div class="pf-status-line">
+          <span class="label">Document:</span>
+          <span class="value" id="docStatus">Waiting for Illustrator…</span>
+        </div>
+        <div class="pf-status-line">
+          <span class="label">Mapping:</span>
+          <span class="value" id="mapSummary">Loading…</span>
+        </div>
+      </section>
+
+      <section class="pf-controls">
+        <label class="pf-control">
+          <span class="pf-control-label">Resolution mode</span>
+          <select id="modeSelect">
+            <option value="mixed">Mixed (folder + suffix)</option>
+            <option value="folder">Folder remapping only</option>
+            <option value="suffix">Filename suffix only</option>
+          </select>
+        </label>
+        <div class="pf-actions">
+          <button id="refreshBtn" type="button">Refresh Links</button>
+          <button id="dryRunBtn" type="button" class="primary">Dry run</button>
+          <button id="relinkBtn" type="button" class="danger">Relink selected</button>
+        </div>
+        <div class="pf-inline-option">
+          <input type="checkbox" id="selectMissing" />
+          <label for="selectMissing">Auto-select missing links</label>
+        </div>
+      </section>
+
+      <section class="pf-table-section">
+        <header class="pf-table-header">
+          <div>
+            <h2>Linked items</h2>
+            <p class="pf-small">Missing links, embedded assets, and dry-run suggestions appear here.</p>
+          </div>
+          <button id="toggleAllBtn" class="ghost" type="button">Toggle all</button>
+        </header>
+        <div class="pf-table-scroll" role="region" aria-label="Linked items table">
+          <table id="itemsTable">
+            <thead>
+              <tr>
+                <th scope="col" class="col-select">Select</th>
+                <th scope="col">Name</th>
+                <th scope="col">Current location</th>
+                <th scope="col">Proposed location</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody id="itemsTbody">
+              <tr class="empty">
+                <td colspan="5">No linked items found.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pf-footer">
+      <button id="openLogBtn" type="button" class="ghost">Open latest log</button>
+      <span class="pf-footer-note">Logs saved to Desktop/ProxyFull Logs as CSV + JSON.</span>
+    </footer>
+
+    <div id="spinner" class="pf-spinner" role="status" aria-live="assertive" hidden>
+      <div class="pf-spinner-circle"></div>
+      <span>Working…</span>
+    </div>
+
+    <div id="toastContainer" class="pf-toast-container" aria-live="assertive" aria-atomic="true"></div>
+
+    <script src="index.js" type="module"></script>
+  </body>
+</html>
